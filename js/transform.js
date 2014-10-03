@@ -14,6 +14,7 @@ function forEachItem(Item, Type, IsReplyable)
 		newdiv.style.height = DefCodeHeight();
 		newdiv.className = DefCodeClass();
 		var newa = document.createElement('a');
+		newa.className = 'codeButton noselect';
 		var newspan = document.createElement('span');
 		newspan.className = 'C_ico '+DefCodeState();
 		newa.appendChild(newspan);
@@ -37,6 +38,7 @@ function forEachItem(Item, Type, IsReplyable)
 		//Item.getElementsByClassName('qh').length != 0
 		newdiv.className = DefQuoteClass();
 		var newa = document.createElement('a');
+		newa.className = 'noselect';
 		var newspan = document.createElement('span');
 		newspan.className = 'C_ico '+DefQuoteState();
 		newa.appendChild(newspan);
@@ -51,6 +53,7 @@ function forEachItem(Item, Type, IsReplyable)
 		newdiv.style.height = DefQuoteExtendedHeight();
 		newdiv.className = DefQuoteClass();
 		var newa = document.createElement('a');
+		newa.className = 'noselect';
 		var newspan = document.createElement('span');
 		newspan.className = 'C_ico '+DefQuoteState();
 		newa.appendChild(newspan);
@@ -65,6 +68,7 @@ function forEachItem(Item, Type, IsReplyable)
 		newdiv.style.height = DefOutpHeight();
 		newdiv.className = DefOutpClass();
 		var newa = document.createElement('a');
+		newa.className = 'noselect';
 		var newspan = document.createElement('span');
 		newspan.className = 'C_ico '+DefOutpState();
 		newa.appendChild(newspan);

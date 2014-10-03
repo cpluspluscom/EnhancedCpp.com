@@ -1,3 +1,4 @@
+.noselect {-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
 .C_ico.ascode {background-image:url(http://www.cplusplus.com/ico/text_code.png);}
 .snippet{tab-size:4;}
 .quote{display:block;height:auto;}
@@ -6,3 +7,4 @@
 .ofhide{overflow:hidden;}
 .ofshow{overflow:visible;}
 .codeSpan{vertical-align:top;font-size:8px;}
+.codeButton{padding-left:12px;}

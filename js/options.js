@@ -1,40 +1,31 @@
-var AllowQuoteButton=1;
-var AllowCodeButton=1;
-var AllowQuoteSpoilers=1;
-var AllowCodeSpoilers=1;
-var AllowOutputSpoilers=1;
-var DefOutputOpen=0;
-var DefQuoteOpen=0;
-var DefCodeOpen=1;
-var DefOutputSize="20px";
-var DefQuoteSize="20px";
-var DefQuoteExtSize="35px";
-var DefCodeSize="20px";
+var currentOptions = {};
 
-function DefQuoteState(){return DefQuoteOpen?"shownicon":"hiddenicon";}
-function DefCodeState(){return DefCodeOpen?"shownicon":"hiddenicon";}
-function DefOutpState(){return DefOutputOpen?"shownicon":"hiddenicon";}
+function LoadOption(key,item,pixelsize){currentOptions[key] = (pixelsize==0)?(item):(''+item+'px');}
 
-function DefQuoteHeight(){return DefQuoteOpen?"auto":DefQuoteSize;}
-function DefQuoteExtendedHeight(){return DefQuoteOpen?"auto":DefQuoteExtSize;}
-function DefCodeHeight(){return DefCodeOpen?"auto":DefCodeSize;}
-function DefOutpHeight(){return DefOutputOpen?"auto":DefOutputSize;}
+function DefQuoteState(){return currentOptions['spl_qopen']?"shownicon":"hiddenicon";}
+function DefCodeState(){return currentOptions['spl_copen']?"shownicon":"hiddenicon";}
+function DefOutpState(){return currentOptions['spl_popen']?"shownicon":"hiddenicon";}
 
-function DefQuoteClass(){return DefQuoteOpen?"ofshow":"ofhide";}
-function DefCodeClass(){return DefCodeOpen?"ofshow":"ofhide";}
-function DefOutpClass(){return DefOutputOpen?"ofshow":"ofhide";}
+function DefQuoteHeight(){return currentOptions['spl_qopen']?"auto":currentOptions['spl_qsz'];}
+function DefQuoteExtendedHeight(){return currentOptions['spl_qopen']?"auto":currentOptions['spl_qxsz'];}
+function DefCodeHeight(){return currentOptions['spl_copen']?"auto":currentOptions['spl_csz'];}
+function DefOutpHeight(){return currentOptions['spl_popen']?"auto":currentOptions['spl_psz'];}
 
-function QuoteButtonAllowed(){return AllowQuoteButton;}
-function CodeButtonAllowed(){return AllowCodeButton;}
-function QuoteSpoilerAllowed(){return AllowQuoteSpoilers;}
-function CodeSpoilerAllowed(){return AllowCodeSpoilers;}
-function OutputSpoilerAllowed(){return AllowOutputSpoilers;}
+function DefQuoteClass(){return currentOptions['spl_qopen']?"ofshow":"ofhide";}
+function DefCodeClass(){return currentOptions['spl_copen']?"ofshow":"ofhide";}
+function DefOutpClass(){return currentOptions['spl_popen']?"ofshow":"ofhide";}
 
-function IsQuoteOpenDefault(){return DefQuoteOpen;}
-function IsCodeOpenDefault(){return DefCodeOpen;}
-function IsOutpOpenDefault(){return DefOutputOpen;}
+function QuoteButtonAllowed(){return currentOptions['allow_quote'];}
+function CodeButtonAllowed(){return currentOptions['allow_code'];}
+function QuoteSpoilerAllowed(){return currentOptions['splow_quote'];}
+function CodeSpoilerAllowed(){return currentOptions['splow_code'];}
+function OutputSpoilerAllowed(){return currentOptions['splow_outp'];}
 
-function ShortQuoteHeight(){return DefQuoteSize;}
-function ShortQuoteExtendedHeight(){return DefQuoteExtSize;}
-function ShortCodeHeight(){return DefCodeSize;}
-function ShortOutpHeight(){return DefOutputSize;}
+function IsQuoteOpenDefault(){return currentOptions['spl_qopen'];}
+function IsCodeOpenDefault(){return currentOptions['spl_copen'];}
+function IsOutpOpenDefault(){return currentOptions['spl_popen'];}
+
+function ShortQuoteHeight(){return currentOptions['spl_qsz'];}
+function ShortQuoteExtendedHeight(){return currentOptions['spl_qxsz'];}
+function ShortCodeHeight(){return currentOptions['spl_csz'];}
+function ShortOutpHeight(){return currentOptions['spl_psz'];}
