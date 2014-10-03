@@ -4,7 +4,7 @@ Enhanced `cplusplus.com`
 This is a Chrome extension which modifies pages on [cplusplus.com](http://www.cplusplus.com/) to make the forums easier to use.
 
 * Adds a quote button to each post on the last page of a topic
-* Adds a code-ize button to eahc post on the last page of a topic - opens a new window with the entire post in code tags
+* Adds a code-ize button to each post on the last page of a topic - opens a new window with the entire post in code tags
 * Makes quotes, code sections, and output sections act like spoiler tags (WIP)
 
 ## Screenshots
