@@ -1,0 +1,27 @@
+{
+	"manifest_version" : 2,
+	"name" : "Enhanced Cpp.com",
+	"description" : "Author: SGH",
+	"version" : "1.2",
+	"homepage_url" : "http://cplusplus.com",
+	
+	"icons" : {
+		"128": "icon/128.png",
+		"48": "icon/48.png",
+		"16": "icon/16.png"
+	},
+	
+	"permissions": [
+		"notifications",
+		"tabs",
+		"storage",
+		"http://*/*"
+	],
+	
+	"content_scripts" : [{
+		"matches" : [ "http://www.cplusplus.com/*" ],
+		"run_at" : "document_end",
+		"js" : ["js/code.js"],
+		"css" : ["css/style.css"]
+	}]
+}
