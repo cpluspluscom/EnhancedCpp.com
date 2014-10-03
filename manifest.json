@@ -1,0 +1,19 @@
+{
+   "content_scripts": [ {
+      "css": [ "css/style.css" ],
+      "js": [ "js/code.js" ],
+      "matches": [ "http://www.cplusplus.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "~ Made by SGH ~",
+   "icons": {
+      "128": "icon/128.png",
+      "16": "icon/16.png",
+      "48": "icon/48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnLUP8GJjqFTifViJXi8FExxBrvdTcucoM6u3pp9KwlqOtGuFSpJH9MWYTvjG7eUEp6oLBzDW4cjP1gyUQ2ELuRbfOpJLBizBw92bbQfXKtRMjVpjJ2GRhyebnzmChjfKdbIK4m7pPHQyQP9IRVEw4g/+UAUVpycZGBweyVLkTJwIDAQAB",
+   "manifest_version": 2,
+   "name": "CPlusPlus.com Quote Button",
+   "permissions": [ "notifications", "tabs", "storage", "http://*/*" ],
+   "version": "1.0"
+}
