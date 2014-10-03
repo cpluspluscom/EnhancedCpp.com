@@ -71,14 +71,18 @@ do {
 	for(var i = 0; i != AllQuotes.length; ++i)
 	{
 		IsEditablePage = 1;
-		forEachItem(AllQuotes[i],0,CanReply);
+		
+		var ItemType = (AllQuotes[i].getElementsByClassName('qh').length != 0)?2:1;
+		forEachItem(AllQuotes[i],ItemType,CanReply); // quote -> 1, named quote -> 2
 	}
 	
 	var AllCodes = document.getElementsByClassName('snippet');
 	for(var i = 0; i != AllCodes.length; ++i)
 	{
 		IsEditablePage = 1;
-		forEachItem(AllCodes[i],1,CanReply);
+		
+		var ItemType = (AllCodes[i].getElementsByClassName('output').length != 0)?3:0;
+		forEachItem(AllCodes[i],ItemType,CanReply); // code -> 0, output -> 3
 	}
 	
 } while(0);
@@ -100,27 +104,6 @@ if(IsEditablePage != 0)
 	forminfo.target = 'previewing';
 	forminfo.name = 'prevthread';
 	AddHiddenForm(inputs,forminfo);
-	/*
-	var formpreview = document.createElement('form');
-	var forminput_w = document.createElement('input');
-	var forminput_content = document.createElement('input');
-
-	forminput_w.type = 'hidden';
-	forminput_w.name = 'w';
-	forminput_w.value = 'preview';
-
-	forminput_content.type = 'hidden';
-	forminput_content.name = 'content';
-	forminput_content.id = 'show_as_code_id';
-
-	formpreview.appendChild(forminput_w);
-	formpreview.appendChild(forminput_content);
-	formpreview.id = 'run_show_as_code_id';
-	formpreview.action = '/forum/post.cgi';
-	formpreview.target = 'previewing';
-	formpreview.method = 'post';
-	formpreview.name = 'prevthread';
-	document.documentElement.appendChild(formpreview);*/
 	
 	var js_common_code = 'function getpostinternal(x){var result="";var Network=new XMLHttpRequest();Network.onreadystatechange=function(){if(Network.readyState==4&&Network.status==200){result=Network.responseText;}else result="error";};Network.open("GET","http://www.cplusplus.com/forum/post.cgi\?w=text\&p="+x,false);Network.send();return result;}';
 	var js_quote_code = 'for_Post.prototype.quote = function(){var result=getpostinternal(this.postid);if(result!="error"){var reply=document.getElementById("CH_reply").getElementsByTagName("a");if(reply[0].href.indexOf("javascript:thread")==0){eval(reply[0].href.substr(11)+";")}reply=document.getElementById("CH_reply").getElementsByTagName("textarea");var replier=this.el.innerHTML;var begin=replier.indexOf("<b>");var end=replier.indexOf("</b>");if(begin>0&&end>0)replier="="+replier.substring(begin+3,end);else replier="";reply[0].value="[quote";reply[0].value+=replier;reply[0].value+="]"+result+"[/quote]";}};';

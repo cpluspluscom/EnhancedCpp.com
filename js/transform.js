@@ -1,9 +1,14 @@
 // These could be edited in the Options page.
 // When it gets built.
 
-function forEachItem(Item, IsCode, IsReplyable)
+// Type:
+//   0 -> Code
+//   1 -> Quote
+//   2 -> Named Quote
+//   3 -> Output
+function forEachItem(Item, Type, IsReplyable)
 {
-	if(IsCode && CodeSpoilerAllowed())
+	if(Type==0 && CodeSpoilerAllowed())
 	{
 		var newdiv = document.createElement('div');
 		newdiv.style.height = DefCodeHeight();
@@ -12,9 +17,7 @@ function forEachItem(Item, IsCode, IsReplyable)
 		var newspan = document.createElement('span');
 		newspan.className = 'C_ico '+DefCodeState();
 		newa.appendChild(newspan);
-		// Use a different var to be consistent with how the Quote spoiler works
-		var targetShortSize = ShortCodeHeight();
-		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,targetShortSize);return false;}
+		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,ShortCodeHeight());return false;}
 		newdiv.appendChild(newa);
 		
 		//codeonly
@@ -27,22 +30,54 @@ function forEachItem(Item, IsCode, IsReplyable)
 		newdiv.appendChild(Item.cloneNode(true));
 		Item.parentNode.replaceChild(newdiv,Item);
 	}
-	if(!IsCode && QuoteSpoilerAllowed())
+	if(Type==1 && QuoteSpoilerAllowed())
 	{
 		var newdiv = document.createElement('div');
-		newdiv.style.height = (Item.getElementsByClassName('qh').length != 0) ?
-			DefQuoteExtendedHeight() :
-			DefQuoteHeight();
+		newdiv.style.height = DefQuoteHeight();
+		//Item.getElementsByClassName('qh').length != 0
 		newdiv.className = DefQuoteClass();
 		var newa = document.createElement('a');
 		var newspan = document.createElement('span');
 		newspan.className = 'C_ico '+DefQuoteState();
 		newa.appendChild(newspan);
-		var targetShortSize = (Item.getElementsByClassName('qh').length != 0) ?
-			ShortQuoteExtendedHeight() :
-			ShortQuoteHeight();
-		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,targetShortSize);return false;}
+		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,ShortQuoteHeight());return false;}
 		newdiv.appendChild(newa);
+		newdiv.appendChild(Item.cloneNode(true));
+		Item.parentNode.replaceChild(newdiv,Item);
+	}
+	if(Type==2 && QuoteSpoilerAllowed())
+	{
+		var newdiv = document.createElement('div');
+		newdiv.style.height = DefQuoteExtendedHeight();
+		newdiv.className = DefQuoteClass();
+		var newa = document.createElement('a');
+		var newspan = document.createElement('span');
+		newspan.className = 'C_ico '+DefQuoteState();
+		newa.appendChild(newspan);
+		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,ShortQuoteExtendedHeight());return false;}
+		newdiv.appendChild(newa);
+		newdiv.appendChild(Item.cloneNode(true));
+		Item.parentNode.replaceChild(newdiv,Item);
+	}
+	if(Type==3 && OutputSpoilerAllowed())
+	{
+		var newdiv = document.createElement('div');
+		newdiv.style.height = DefOutpHeight();
+		newdiv.className = DefOutpClass();
+		var newa = document.createElement('a');
+		var newspan = document.createElement('span');
+		newspan.className = 'C_ico '+DefOutpState();
+		newa.appendChild(newspan);
+		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,ShortOutpHeight());return false;}
+		newdiv.appendChild(newa);
+		
+		//Outponly
+		var Outpspan = document.createElement('span');
+		Outpspan.className='codeSpan';
+		Outpspan.innerHTML='Output';
+		newdiv.appendChild(Outpspan);
+		//endOutponly
+		
 		newdiv.appendChild(Item.cloneNode(true));
 		Item.parentNode.replaceChild(newdiv,Item);
 	}
