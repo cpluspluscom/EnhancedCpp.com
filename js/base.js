@@ -1,4 +1,15 @@
 // dev'ed by SGH. Ideas by LB. Uploading fee provided by BHXSpecter.
+function CloneItem(item) // Clone and item and its childs' callbacks.
+{                        // Used by Code spoilers.
+	var cloned = item.cloneNode(false); // We clone the first node.
+	// We lose the first node's callbacks. No way to save them reliably, but we don't need them.
+	// The childs are shared to preserve callbacks.
+	for(var i = 0; i < item.childNodes.length; ++i)
+	{
+		cloned.appendChild(item.childNodes[i]);
+	}
+	return cloned;
+}
 function ToggleDisplay( TargetDiv, DisplayIcon, ShortSize ) // Called by spoiler's <a>'s onclick handler
 {
 	if(TargetDiv.style.height == "auto") // Already expanded?

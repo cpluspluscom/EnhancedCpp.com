@@ -115,7 +115,7 @@ function RunPageEdit()
 		// Cpp.sh button does not work when code spoilers are enabled.
 		// Sorry, twicker, i'll have to hide it.
 		// The current workaround is to disable code spoilers, no idea.
-		if(CodeSpoilerAllowed())
+		/*if(CodeSpoilerAllowed())
 		{
 			var buttonHolders = document.getElementsByClassName('C_btnholder');
 			for(var i = 0; i != buttonHolders.length; ++i)
@@ -126,6 +126,6 @@ function RunPageEdit()
 					buttonHolders[i].style.display = 'none';
 				}
 			}
-		}
+		}*/
 	}
 }

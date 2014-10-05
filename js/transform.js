@@ -28,7 +28,7 @@ function forEachItem(Item, Type, IsReplyable)
 		newdiv.appendChild(codespan);
 		//endcodeonly
 		
-		newdiv.appendChild(Item.cloneNode(true));
+		newdiv.appendChild(CloneItem(Item));
 		Item.parentNode.replaceChild(newdiv,Item);
 	}
 	if(Type==1 && QuoteSpoilerAllowed())
@@ -44,7 +44,7 @@ function forEachItem(Item, Type, IsReplyable)
 		newa.appendChild(newspan);
 		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,ShortQuoteHeight());return false;}
 		newdiv.appendChild(newa);
-		newdiv.appendChild(Item.cloneNode(true));
+		newdiv.appendChild(CloneItem(Item));
 		Item.parentNode.replaceChild(newdiv,Item);
 	}
 	if(Type==2 && QuoteSpoilerAllowed())
@@ -59,7 +59,7 @@ function forEachItem(Item, Type, IsReplyable)
 		newa.appendChild(newspan);
 		newa.onclick = function(){ToggleDisplay(this.parentNode,newspan,ShortQuoteExtendedHeight());return false;}
 		newdiv.appendChild(newa);
-		newdiv.appendChild(Item.cloneNode(true));
+		newdiv.appendChild(CloneItem(Item));
 		Item.parentNode.replaceChild(newdiv,Item);
 	}
 	if(Type==3 && OutputSpoilerAllowed())
@@ -82,7 +82,7 @@ function forEachItem(Item, Type, IsReplyable)
 		newdiv.appendChild(Outpspan);
 		//endOutponly
 		
-		newdiv.appendChild(Item.cloneNode(true));
+		newdiv.appendChild(CloneItem(Item));
 		Item.parentNode.replaceChild(newdiv,Item);
 	}
 }
