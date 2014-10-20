@@ -1,19 +1,12 @@
-var defaultOptions =
+var g_lastTimer;
+function RearmTimer()
 {
-	allow_quote:'1',
-	allow_code:'0',
-	splow_quote:'1',
-	splow_code:'0',
-	splow_outp:'1',
-	spl_qopen:'0',
-	spl_qsz:'20',
-	spl_qxsz:'35',
-	spl_copen:'1',
-	spl_csz:'20',
-	spl_popen:'0',
-	spl_psz:'20'
-};
-
+	if(g_lastTimer)
+		window.clearTimeout(g_lastTimer);
+	var targetStatus = document.getElementById('status');
+	targetStatus.style.height = "14px";
+	g_lastTimer = setTimeout(function(){targetStatus.style.height="0px";},1500);
+}
 function Save() {
 	var localOptions = {};
 	for(var k in defaultOptions)
@@ -32,9 +25,8 @@ function Save() {
 	}
 	chrome.storage.sync.set(localOptions,
 	function() {
-		var targetStatus = document.getElementById('status');
-		targetStatus.textContent = 'Options Saved.'
-		setTimeout(function(){targetStatus.textContent='';},1500);
+		document.getElementById('status').innerText = "Options Saved."
+		RearmTimer();
 	});
 }
 function Load() {
@@ -58,5 +50,15 @@ function Load() {
 		}
 	});
 }
+for(var k in defaultOptions)
+{
+	if(!defaultOptions.hasOwnProperty(k))
+		continue;
+	var elem = document.getElementById(k);
+	if(elem)
+	{
+		elem.onclick = Save;
+	}
+}
 document.addEventListener('DOMContentLoaded', Load);
-document.getElementById('save').addEventListener('click',Save);
+document.getElementById('do_report').onclick = function(){document.getElementById('status').innerText="I think you are a funny guy.";RearmTimer();return false;};

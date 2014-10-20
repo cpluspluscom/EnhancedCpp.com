@@ -87,6 +87,14 @@ function RunPageEdit()
 			forEachItem(AllCodes[i],ItemType,CanReply); // code -> 0, output -> 3
 		}
 		
+		var AllCodeBlocks = document.getElementsByClassName('btn trans_half');
+		for(var i = 0; i != AllCodeBlocks.length; ++i)
+		{
+			IsEditablePage = 1;
+			
+			forEachItem(AllCodeBlocks[i],4,CanReply); // [compile with] box -> 4
+		}
+		
 	} while(0);
 	// The reason behind the do/while(0) is so I can break out of this if the page is not a topic's page.
 	// This allows me to not having to add multiple nested ifs.

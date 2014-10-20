@@ -85,6 +85,67 @@ function forEachItem(Item, Type, IsReplyable)
 		newdiv.appendChild(CloneItem(Item));
 		Item.parentNode.replaceChild(newdiv,Item);
 	}
+	if(Type==4 && CompileAllowed())
+	{
+		Item.style.height = "32px";
+		Item.style.whiteSpace = "nowrap";
+		Item.onmouseout = function(){
+			Item.style.width = "16px";
+			Item.style.backgroundColor = "#FFF";
+		}
+		Item.onmouseover = function(){
+			Item.style.width = "100px";
+			Item.style.backgroundColor = "#FFD";
+		}
+		
+		Item.firstChild.firstChild.style.backgroundImage = "url('http://cpp.sh/favicon.ico')";
+		Item.firstChild.firstChild.style.backgroundSize = "16px";
+		Item.firstChild.firstChild.className = "C_ico";
+		
+		var newa = document.createElement('a');
+		newa.href = '#'; // set onclick
+		newa.onclick = function()
+		{
+			var snippetElem = FindParent(newa,function(elem){
+				return elem.className == "snippet";
+			});
+			if(snippetElem)
+			{
+				var srcElem = snippetElem.getElementsByClassName('source');
+				if(srcElem.length)
+				{
+					var code = GetText(srcElem[0]);
+					window.open('http://coliru.stacked-crooked.com/?src='+escape(code),'_blank');
+				}
+			}
+			// Go upwards from Item, finding the "snippet" classnamed table.
+			// From the "snippet" classnamed table, find a "source" classnamed table.
+			// Run dom.text(mysourceclassnamedelement)
+			// Store it. It's the code we want to compile.
+			
+			// Open a coliru page as follows:
+			//     window.open('http://coliru.stacked-crooked.com','_blank');
+			// Execute:
+			//     app.defaultCmd = "ourcode";
+			//     app.resetCommand();
+			// on it after the page has loaded.
+			// NOTE: DO NOT USE document.onload ! COLIRU ALREADY USES IT!
+			// We probably should use
+			//     window.open().document.addEventListener('load',function(){...});
+			// Inject the code via <script> tags, using the handle window.open() returns.
+		};
+		newa.title = "Open Coliru (in a new window)";
+		newa.target = "_top";
+		newa.innerHTML = "<span></span> Edit on Coliru";
+		
+		var newspan = newa.firstChild;
+		newspan.style.backgroundImage = "url('http://coliru.stacked-crooked.com/favicon.ico')"
+		newspan.style.backgroundSize = "16px";
+		newspan.className = "C_ico";
+		
+		Item.appendChild(document.createElement('br'));
+		Item.appendChild(newa);
+	}
 }
 function forEachPost_Buttons(ButtonStorage, PostID, IsReplyable)
 {

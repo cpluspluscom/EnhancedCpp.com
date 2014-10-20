@@ -1,4 +1,12 @@
 // dev'ed by SGH. Ideas by LB. Uploading fee provided by BHXSpecter.
+function FindParent(item,matchfunc)
+{
+	do {
+		if(matchfunc(item))
+			return item;
+	} while(item = item.parentNode);
+}
+function GetText(b,c){if(typeof c==="undefined"){return b.textContent||b.innerText}else{if(b.textContent){b.textContent=c}else{b.innerText=c}}}
 function CloneItem(item) // Clone and item and its childs' callbacks.
 {                        // Used by Code spoilers.
 	var cloned = item.cloneNode(false); // We clone the first node.

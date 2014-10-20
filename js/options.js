@@ -20,6 +20,7 @@ function CodeButtonAllowed(){return currentOptions['allow_code'];}
 function QuoteSpoilerAllowed(){return currentOptions['splow_quote'];}
 function CodeSpoilerAllowed(){return currentOptions['splow_code'];}
 function OutputSpoilerAllowed(){return currentOptions['splow_outp'];}
+function CompileAllowed(){return currentOptions['allow_cbox'];}
 
 function IsQuoteOpenDefault(){return currentOptions['spl_qopen'];}
 function IsCodeOpenDefault(){return currentOptions['spl_copen'];}
