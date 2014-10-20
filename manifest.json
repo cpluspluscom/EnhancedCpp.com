@@ -2,7 +2,7 @@
 	"manifest_version" : 2,
 	"name" : "Enhanced Cpp.com",
 	"description" : "Author: SGH",
-	"version" : "1.6",
+	"version" : "1.7",
 	"homepage_url" : "https://github.com/cpluspluscom/EnhancedCpp.com",
 	"options_page" : "options/options.html",
 	
