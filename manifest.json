@@ -21,8 +21,8 @@
 	"content_scripts" : [
 		{
 			"matches" : ["http://www.cplusplus.com/*"],
-			"run_at" : "document_end",
-			"js" : ["options/js/defaults.js", "js/options.js", "js/base.js", "js/transform.js", "js/enumerate.js", "js/main.js"],
+			"run_at" : "document_idle",
+			"js" : ["options/js/defaults.js", "js/options.js", "js/base.js", "js/transform.js", "js/enumerate.js", "js/main.js", "js/quote.js"],
 			"css" : ["css/style.css"]
 		},
 		{
