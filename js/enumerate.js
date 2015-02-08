@@ -2,7 +2,7 @@ function RunPageEdit() {
 	var isEditablePage = 0;
 	do {
 		// Can I reply? (aka Can I quote a post?)
-		var canReply = +(document.getElementsByClassName('postreply').length !== 0);
+		var canReply = +(document.querySelector('#CH_subscription > form > select').children.length > 2);
 		var currentTopic = document.location.pathname;
 
 		// Parse Topic ID
@@ -103,18 +103,27 @@ function RunPageEdit() {
 		var js_quote_code = 'for_Post.prototype.quote = ' + (function() {
 			var result = getpostinternal(this.postid);
 			if (result !== 'error') {
-				var reply = document.getElementById('CH_reply').getElementsByTagName('a');
-				if (reply[0].href.indexOf('javascript:thread') === 0) {
-					eval(reply[0].href.substr(11) + ';');
-				}
-				reply = document.getElementById('CH_reply').getElementsByTagName('textarea');
+				var pages = document.querySelector('.C_pages');
+				var on_last_page = pages ? !!pages.lastChild.title : true;
 
 				var replier = this.el.innerHTML;
 				var begin = replier.indexOf('<b>');
 				var end = replier.indexOf('</b>');
-
 				replier = (begin > 0 && end > 0) ? ('=' + replier.substring(begin + 3, end)) : '';
-				reply[0].value ='[quote' + replier + ']' + result + '[/quote]';
+
+				if (on_last_page) {
+					var reply = document.getElementById('CH_reply').getElementsByTagName('a');
+					if (reply[0].href.indexOf('javascript:thread') === 0) {
+						eval(reply[0].href.substr(11) + ';');
+					}
+					reply = document.getElementById('CH_reply').getElementsByTagName('textarea');
+
+					reply[0].value = '[quote' + replier + ']' + result + '[/quote]';
+				} else {
+					localStorage.setItem('q_body', '[quote' + replier + ']' + result + '[/quote]');
+					localStorage.setItem('q_tid', window.location.pathname.split('/').slice(3,4)[0]);
+					window.location.href = pages.lastChild.href;
+				}
 			}
 		}).toString() + ';';
 
