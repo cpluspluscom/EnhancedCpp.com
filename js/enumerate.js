@@ -2,8 +2,12 @@ function RunPageEdit() {
 	var isEditablePage = 0;
 	do {
 		// Can I reply? (aka Can I quote a post?)
-		var canReply = +(document.querySelector('#CH_subscription > form > select').children.length > 2);
-		var currentTopic = document.location.pathname;
+		try {
+			var canReply = +(document.querySelector('#CH_subscription > form > select').children.length > 2);
+			var currentTopic = document.location.pathname;
+		} catch (e) {
+			continue;
+		}
 
 		// Parse Topic ID
 		{
