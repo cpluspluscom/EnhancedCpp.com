@@ -23,3 +23,8 @@ By default, Chrome now disables non-store extensions, such as this extension. To
 * In the list, paste the Extension IDs to whitelist. On my system, this extension has the ID `gcgeapgjphgeiaibnolfidoilmnjcjeb` . I have no idea if it changes from system to system. Make sure to check in your Extensions page.
 * Click OK and Restart Chrome. In the extensions page, it will take some seconds before the Enable checkbox is ungreyed.
 To further whitelist more extensions, restart from point 2.
+
+## Contributors
+* Mauro Grassia (SGH)
+* Nicholas Braden (LB)
+* Ronak Gajrawala (usandfriends)
