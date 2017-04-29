@@ -1,25 +1,15 @@
-// dev'ed by SGH. Ideas by LB. Uploading fee provided by BHXSpecter.
+// This is used to define some basic functions.
 
+// Find a parent. Stops when matchFunc returns true.
 function FindParent(item, matchFunc) {
 	do {
-		if (matchFunc(item)) {
+		if (matchFunc(item) === true) {
 			return item;
 		}
 	} while (item = item.parentNode);
 }
 
-function GetText(b, c) {
-	if (c === undefined) {
-		return b.textContent || b.innerText;
-	} else if (b.textContent) {
-		b.textContent = c;
-	} else {
-		b.innerText = c;
-	}
-}
-
-// Clone and item and its childs' callbacks.
-// Used by Code spoilers.
+// Clone and item and its childs' callbacks. Used by Code spoilers.
 function CloneItem(item) {
 	// We clone the first node.
 	var cloned = item.cloneNode(false);
@@ -33,7 +23,8 @@ function CloneItem(item) {
 	return cloned;
 }
 
-function ToggleDisplay(targetDiv, displayIcon, shortSize) { // Called by spoiler's <a>'s onclick handler
+// Called by spoiler's <a>'s onclick handler
+function ToggleDisplay(targetDiv, displayIcon, shortSize) {
 	if (targetDiv.style.height == "auto") { // Already expanded?
 		// Close
 		targetDiv.className = "ofhide"; // overflow: hidden
@@ -47,26 +38,35 @@ function ToggleDisplay(targetDiv, displayIcon, shortSize) { // Called by spoiler
 	}
 }
 
-// Add a <script> element with "Script" as internal js code. Do not use exec.
-// Some code does not work in any other way due to security limitations.
-function RunJavascriptCode(script) {
+// Run javascript with eval
+function RunJavascript(script) {
+	eval(script)
+}
+
+// Append javascript to the document
+function AppendJavascript(script) {
 	var scriptElement = document.createElement('script');
 	scriptElement.textContent = script;
 	document.documentElement.appendChild(scriptElement);
 }
 
 /*
- * Inputs:
- *   Table, array-like, 0-indexed.
+ * Parameter 'inputs':
+ *   Array
+ *
  * Each item must have:
- *   Property   Optional?
- *   name       No
- *   value      Yes
- *   id         Yes
- * FormInfo:
- *   Table item.
+ *  _____________________
+ * | Property | Optional |
+ * |__________|__________|
+ * |  name    | No       |
+ * |  value   | Yes      |
+ * |  id      | Yes      |
+ * |__________|__________|
+ *
+ * Parameter 'formInfo':
+ *   Table
+ *
  * It must have:
- *   Property
  *   id
  *   path
  *   target

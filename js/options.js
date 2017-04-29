@@ -74,10 +74,6 @@ function OutputSpoilerAllowed() {
 	return currentOptions['splow_outp'];
 }
 
-function CompileAllowed() {
-	return currentOptions['allow_cbox'];
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 function IsQuoteOpenDefault() {

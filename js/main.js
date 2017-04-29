@@ -17,5 +17,7 @@ chrome.storage.sync.get(defaultOptions, function(items) {
 		LoadOption(k, numericItem, +(numericDefault > 1));
 	}
 
-	RunPageEdit();
+	HookPostProperties();
+	SetOptionsLoaded(true);
+	ExecuteAutoQuote();
 });

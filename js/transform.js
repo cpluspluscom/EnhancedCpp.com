@@ -1,12 +1,9 @@
-// These could be edited in the Options page.
-// When it gets built.
-
-// Type:
+// Create Spoilers to every block
 //   0 -> Code
 //   1 -> Quote
 //   2 -> Named Quote
 //   3 -> Output
-function forEachItem(item, type, isReplyable) {
+function CreateSpoiler(item, type, isReplyable) {
 	if (type === 0 && CodeSpoilerAllowed()) {
 		var newdiv = document.createElement('div');
 		newdiv.style.height = DefCodeHeight();
@@ -38,7 +35,6 @@ function forEachItem(item, type, isReplyable) {
 	if (type === 1 && QuoteSpoilerAllowed()) {
 		var newdiv = document.createElement('div');
 		newdiv.style.height = DefQuoteHeight();
-		//item.getElementsByClassName('qh').length != 0
 		newdiv.className = DefQuoteClass();
 
 		var newa = document.createElement('a');
@@ -109,65 +105,10 @@ function forEachItem(item, type, isReplyable) {
 
 		item.parentNode.replaceChild(newdiv, item);
 	}
-
-	if (type === 4 && CompileAllowed()) {
-		item.style.height = "32px";
-		item.style.whiteSpace = "nowrap";
-		item.onmouseout = function(){
-			item.style.width = "16px";
-			item.style.backgroundColor = "#FFF";
-		}
-		item.onmouseover = function(){
-			item.style.width = "100px";
-			item.style.backgroundColor = "#FFD";
-		}
-
-		item.firstChild.firstChild.style.backgroundImage = "url('http://cpp.sh/favicon.ico')";
-		item.firstChild.firstChild.style.backgroundSize = "16px";
-		item.firstChild.firstChild.className = "C_ico";
-
-		var newa = document.createElement('a');
-		newa.href = '#'; // set onclick
-		newa.onclick = function() {
-			var snippetElem = FindParent(newa, function(elem) { return elem.className == "snippet"; });
-			if (snippetElem) {
-				var srcElem = snippetElem.getElementsByClassName('source');
-				if (srcElem.length > 0) {
-					var code = GetText(srcElem[0]);
-					window.open('http://coliru.stacked-crooked.com/?src=' + escape(code), '_blank');
-				}
-			}
-			// Go upwards from item, finding the "snippet" classnamed table.
-			// From the "snippet" classnamed table, find a "source" classnamed table.
-			// Run dom.text(mysourceclassnamedelement)
-			// Store it. It's the code we want to compile.
-
-			// Open a coliru page as follows:
-			//     window.open('http://coliru.stacked-crooked.com','_blank');
-			// Execute:
-			//     app.defaultCmd = "ourcode";
-			//     app.resetCommand();
-			// on it after the page has loaded.
-			// NOTE: DO NOT USE document.onload ! COLIRU ALREADY USES IT!
-			// We probably should use
-			//     window.open().document.addEventListener('load',function(){...});
-			// Inject the code via <script> tags, using the handle window.open() returns.
-		};
-		newa.title = "Open Coliru (in a new window)";
-		newa.target = "_top";
-		newa.innerHTML = "<span></span> Edit on Coliru";
-
-		var newspan = newa.firstChild;
-		newspan.style.backgroundImage = "url('http://coliru.stacked-crooked.com/favicon.ico')"
-		newspan.style.backgroundSize = "16px";
-		newspan.className = "C_ico";
-
-		item.appendChild(document.createElement('br'));
-		item.appendChild(newa);
-	}
 }
 
-function forEachPost_Buttons(buttonStorage, postID, isReplyable) {
+// Add buttons to each post
+function CreateButtons(buttonStorage, postID, isReplyable) {
 	var result = '';
 	if (CodeButtonAllowed()) {
 		result += '<span><a href="javascript:post';
