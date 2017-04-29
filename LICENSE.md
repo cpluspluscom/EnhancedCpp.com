@@ -1,4 +1,4 @@
-Copyright (c) 2014-2015 - Mauro Grassia
+Copyright (c) 2014-2017 - Mauro Grassia
 
 Permission is hereby granted, free of charge, to any person or organization
 obtaining a copy of the software and accompanying documentation covered by
