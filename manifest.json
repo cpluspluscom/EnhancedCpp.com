@@ -21,7 +21,7 @@
 		{
 			"matches" : ["http://www.cplusplus.com/*"],
 			"run_at" : "document_end",
-			"js" : ["options/js/defaults.js", "js/options.js", "js/prototypes.js", "js/base.js", "js/transform.js", "js/autoquote.js", "js/hook.js", "js/main.js"],
+			"js" : ["options/js/defaults.js", "js/options.js", "js/prototypes.js", "js/base.js", "js/autoquote.js", "js/transform.js", "js/hook.js", "js/main.js"],
 			"css" : ["css/style.css"]
 		}
 	]

@@ -17,7 +17,12 @@ chrome.storage.sync.get(defaultOptions, function(items) {
 		LoadOption(k, numericItem, +(numericDefault > 1));
 	}
 
-	HookPostProperties();
 	SetOptionsLoaded(true);
-	ExecuteAutoQuote();
+	HookPostProperties();
 });
+
+function EnhanceWebsite() {
+	AddPrototypes([{from: "%THREADID%",to: ThreadID}]);
+	EditPage();
+	ExecuteAutoQuote();
+}
